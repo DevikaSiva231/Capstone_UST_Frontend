@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function Businesstemplate() {
 
-  const API_KEY = 'AIzaSyC8_8HyP3rIPOBemdhXgFheAe61sIUkSas';
+  const API_KEY = '';
 
   const address = 'Thakadiyil+Chelad+Karingazha+Keerampara';
   const zipcode = '686681';

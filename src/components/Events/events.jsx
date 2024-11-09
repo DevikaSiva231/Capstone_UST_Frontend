@@ -1,7 +1,7 @@
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-function AutoCarousel() {
+function Event() {
   return (
     <Carousel
       autoPlay={true} // Enable autoplay
@@ -35,4 +35,4 @@ function AutoCarousel() {
   );
 }
 
-export default AutoCarousel;
+export default Event;
