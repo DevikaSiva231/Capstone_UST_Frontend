@@ -44,7 +44,7 @@ function Navbar() {
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
-                <li><a>Home</a></li>
+                <li><a href="/">Home</a></li>
                 <li>
                     <details>
                     <summary>Parent</summary>
@@ -54,7 +54,7 @@ function Navbar() {
                     </ul>
                     </details>
                 </li>
-                <li><a>About Us</a></li>
+                <li><a href="/about">About Us</a></li>
                 </ul>
             </div>
                 <div className="flex-none gap-2 navbar-end">
@@ -73,7 +73,7 @@ function Navbar() {
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                         <li>
-                        <a onclick={n} className="justify-between">
+                        <a onClick={n} className="justify-between">
                             Profile
                             {/* <span className="badge">New</span> */}
                         </a>
