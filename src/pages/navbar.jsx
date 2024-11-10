@@ -65,9 +65,8 @@ function Navbar() {
                 </ul>
             </div>
                 <div className="flex-none gap-2 navbar-end">
-                    <div className="form-control absolute z-10 top-1 right-16">
+                    <div className="form-control absolute z-10 top-1 right-96">
                         <SearchComponent/>
-                    {/* <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" /> */}
                     </div>
                     <div className="dropdown dropdown-end">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
@@ -83,7 +82,6 @@ function Navbar() {
                         <li>
                         <a onClick={n} className="justify-between">
                             Profile
-                            {/* <span className="badge">New</span> */}
                         </a>
                         </li>
                         <li><a>Settings</a></li>
@@ -91,9 +89,6 @@ function Navbar() {
                     </ul>
                     </div>
                 </div>
-            {/* <div className="navbar-end"> */}
-                {/* <a className="btn">Button</a> */}
-            {/* </div> */}
         </div>
     </div>
   )

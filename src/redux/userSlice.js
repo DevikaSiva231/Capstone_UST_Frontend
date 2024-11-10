@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 export const userSlice = createSlice({
   name: 'user',
   initialState: {
-    userId: 4,
+    userId: 1,
   },
   reducers: {
     increment: (state) => {
