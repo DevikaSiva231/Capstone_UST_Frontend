@@ -1,5 +1,6 @@
 import React from 'react'
 import {useNavigate} from 'react-router-dom'
+import ProfileDropdown from '../components/homePage/ProfileDropDown';
 import SearchComponent from '../components/UserLocation/searchComponent';
 
 function Navbar() {
@@ -68,27 +69,27 @@ function Navbar() {
                     <div className="form-control absolute z-10 top-1 right-96">
                         <SearchComponent/>
                     </div>
-                    <div className="dropdown dropdown-end">
-                    <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                        <div className="w-10 rounded-full">
-                        <img
-                            alt="Tailwind CSS Navbar component"
-                            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                    {/* <div className="dropdown dropdown-end">
+                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                            <div className="w-10 rounded-full">
+                            <img
+                                alt="Tailwind CSS Navbar component"
+                                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                            </div>
                         </div>
-                    </div>
-                    <ul
-                        tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                        <li>
-                        <a onClick={n} className="justify-between">
-                            Profile
-                        </a>
-                        </li>
-                        <li><a>Settings</a></li>
-                        <li><a onClick={handleLogout}>Logout</a></li>
-                    </ul>
-                    </div>
-                </div>
+                            <ul
+                                tabIndex={0}
+                                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                                <li>
+                                    <a onClick={n} className="justify-between">
+                                        Profile
+                                    </a>
+                                </li>
+                                <li><a onClick={handleLogout}>Logout</a></li>
+                            </ul>
+                    </div> */}
+                    < ProfileDropdown />
+            </div>
         </div>
     </div>
   )
