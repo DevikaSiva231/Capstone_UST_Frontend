@@ -13,6 +13,10 @@ import About from './pages/about'
 import Ownerprofile from './pages/ownerprofile'
 import Signup from './pages/signup'
 import Userprofile from './pages/userprofile'
+import Searchrestaurent from './pages/searchrestaurent'
+import Rough from './pages/rough'
+import { Provider } from 'react-redux'
+import store from './redux/store'
 
 const router=createBrowserRouter([
   {
@@ -20,6 +24,7 @@ const router=createBrowserRouter([
     element:<Layout/>,
     children:[
       {path:"/",element:<Home/>},
+      {path:"/home",element:<Home/>},
       {path:"/signup",element:<Signup/>},
       {path:"/login",element:<Login/>},
       {path:"/about",element:<About/>},
@@ -27,12 +32,16 @@ const router=createBrowserRouter([
       {path:"/business",element:<Businesstemplate/>},
       {path:"/ownerprofile",element:<Ownerprofile/>},
       {path:"/userprofile",element:<Userprofile/>},
+      {path:"/searchrestaurent",element:<Searchrestaurent/>},
+      {path:"/rough",element:<Rough/>},
     ]
   }
 ])
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+     <Provider store={store}>
     <RouterProvider router={router}/>
+    </Provider>
   </StrictMode>,
 )

@@ -1,8 +1,15 @@
 import React from 'react'
 import {useNavigate} from 'react-router-dom'
+import SearchComponent from '../components/UserLocation/searchComponent';
 
 function Navbar() {
     const navigate= useNavigate()
+
+    const handleLogout = () => {
+        navigate('/');
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+      };
 
     const n = ()=>{
         navigate('/ownerprofile')
@@ -44,7 +51,7 @@ function Navbar() {
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
-                <li><a>Home</a></li>
+                <li><a href="/">Home</a></li>
                 <li>
                     <details>
                     <summary>Parent</summary>
@@ -54,12 +61,13 @@ function Navbar() {
                     </ul>
                     </details>
                 </li>
-                <li><a>About Us</a></li>
+                <li><a href="/about">About Us</a></li>
                 </ul>
             </div>
                 <div className="flex-none gap-2 navbar-end">
-                    <div className="form-control">
-                    <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
+                    <div className="form-control absolute z-10 top-1 right-16">
+                        <SearchComponent/>
+                    {/* <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" /> */}
                     </div>
                     <div className="dropdown dropdown-end">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
@@ -73,13 +81,13 @@ function Navbar() {
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                         <li>
-                        <a onclick={n} className="justify-between">
+                        <a onClick={n} className="justify-between">
                             Profile
                             {/* <span className="badge">New</span> */}
                         </a>
                         </li>
                         <li><a>Settings</a></li>
-                        <li><a>Logout</a></li>
+                        <li><a onClick={handleLogout}>Logout</a></li>
                     </ul>
                     </div>
                 </div>

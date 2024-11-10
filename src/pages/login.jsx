@@ -1,51 +1,32 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useState } from 'react';
 import {Link, useNavigate} from 'react-router-dom'
 
 function Login() {
     const navigate=useNavigate()
-    const n = () =>{
-        navigate("/")
-    }
+    const [username,setUsername]= useState('');
+    const [password,setPassword]= useState('');
+
+    const handleLogin = async (event) => {
+        event.preventDefault();
+        
+        try {
+          const response = await axios.post(`http://127.0.0.1:8000/api/token/`, {
+            username: 'devika',
+            password: 'anjudevu123',
+          });
+          localStorage.setItem('accessToken', response.data.access);
+          localStorage.setItem('refreshToken', response.data.refresh);
+          console.log('INside');
+          navigate('/home');
+        } catch (error) {
+          console.error('Login failed', error);
+        }
+      };
+      
   return (
     <div>
-        {/* <div>
-            <div className="mt-5 mb-0 text-center">
-                    <h1 className="text-3xl font-bold">Login now!</h1>
-                </div>
-            <div className="hero bg-base-0 min-h-screen">
-                
-                <div className="card glass w-96">
-                    <form className="card-body">
-                        <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Username</span>
-                        </label>
-                        <input type="text" placeholder="username" className="input input-bordered" required />
-                        </div>
-                        <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Password</span>
-                        </label>
-                        <input type="password" placeholder="password" className="input input-bordered" required />
-                        <label className="label">
-                            <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                        </label>
-                        </div> */}
-                        {/* {errormsg &&<div className="ml-24 error">{errormsg}</div>} */}
-                        {/* <div className="form-control mt-4">
-                        <button type="submit" className="btn btn-primary">Login</button>
-                        </div>
-                    </form>
-                    <label className="ml-28 label">
-                            <span className="label-text">Dont have an account ?</span>
-                    </label>
-                    <button className="ml-7 mr-7 mb-5 btn btn-primary">Sign Up</button>
-                    <a onClick={n} className="text-center">Login later?</a>
-                </div>
-            </div>
-        </div> */}
-
-        <div className="hero glass min-h-screen">
+        <div className="hero min-h-screen">
         <div className="hero-content flex-col lg:flex-row-reverse">
             <div className="text-center lg:text-left">
             <h1 className="text-5xl font-bold">Login now</h1>
@@ -55,24 +36,24 @@ function Login() {
             </p>
             </div>
             <div className="m-10 card glass w-full max-w-sm shrink-0 shadow-2xl">
-            <form className="card-body">
+            <form className="card-body" onSubmit={handleLogin}>
                 <div className="form-control">
                 <label className="label">
-                    <span className="label-text">Email</span>
+                    <span className="label-text">Username</span>
                 </label>
-                <input type="email" placeholder="email" className="input input-bordered" required />
+                <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="text" className="input input-bordered" required />
                 </div>
                 <div className="form-control">
                 <label className="label">
                     <span className="label-text">Password</span>
                 </label>
-                <input type="password" placeholder="password" className="input input-bordered" required />
+                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="password" className="input input-bordered" required />
                 <label className="label">
                     <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                 </label>
                 </div>
                 <div className="form-control mt-6">
-                <button className="btn btn-primary">Login</button>
+                <button className="btn btn-primary" type="submit">Login</button>
                 </div>
             </form>
             </div>
