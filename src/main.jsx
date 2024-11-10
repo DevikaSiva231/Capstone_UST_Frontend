@@ -15,6 +15,8 @@ import Signup from './pages/signup'
 import Userprofile from './pages/userprofile'
 import Searchrestaurent from './pages/searchrestaurent'
 import Rough from './pages/rough'
+import { Provider } from 'react-redux'
+import store from './redux/store'
 
 const router=createBrowserRouter([
   {
@@ -38,6 +40,8 @@ const router=createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+     <Provider store={store}>
     <RouterProvider router={router}/>
+    </Provider>
   </StrictMode>,
 )
