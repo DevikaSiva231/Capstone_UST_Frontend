@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 const ProfileDropdown = () => {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.user.userId);
+  console.log('UserId from dropdown: ', userId);
 
   const [profilePicture, setProfilePicture] = useState(null);
   const [loading, setLoading] = useState(true);

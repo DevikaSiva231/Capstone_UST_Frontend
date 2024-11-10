@@ -4,6 +4,8 @@ export const userSlice = createSlice({
   name: 'user',
   initialState: {
     userId: null,
+    longitude: null,
+    latitude: null,
   },
   reducers: {
     setUserId: (state, action) => {
@@ -11,10 +13,15 @@ export const userSlice = createSlice({
     },
     clearUserId: (state) => {
       state.userId = null;
-    }
+    },
+    setLocation: (state, action) => {
+      const { latitude, longitude } = action.payload;
+      state.latitude = latitude;
+      state.longitude = longitude;
+    },
   },
 });
 
-export const { setUserId, clearUserId } = userSlice.actions;
+export const { setUserId, clearUserId, setLocation } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -79,23 +79,21 @@ function Home() {
       <div>
         <p className="text-center"><a href="/registerbusiness">Register now</a></p>
       </div>
-      {console.log('Business:', businesses.restaurants)}
+        <div id="restaurants">
+          <BusinessSection  arr={businesses.restaurants} image={restaurantsImages}/>
+        </div>
 
-      <div id="restaurants">
-        <BusinessSection  arr={businesses.restaurants} image={restaurantsImages}/>
-      </div>
-
-      <br />
-      <div id="salons">
-        <BusinessSection1 arr={businesses.salons} image={salonImages}/>
-      </div>
-      <br />
-      <div id="supermarkets">
-        <BusinessSection arr={businesses.supermarkets} image={superMarketImages}/>
-      </div>
-      <br />
-      <div id="bookstores">
-        <BusinessSection1 arr={businesses.bookstores} image={bookStoreImages}/>
+        <br />
+        <div id="salons">
+          <BusinessSection1 arr={businesses.salons} image={salonImages}/>
+        </div>
+        <br />
+        <div id="supermarkets">
+          <BusinessSection arr={businesses.supermarkets} image={superMarketImages}/>
+        </div>
+        <br />
+        <div id="bookstores">
+          <BusinessSection1 arr={businesses.bookstores} image={bookStoreImages}/>
       </div>
 
 
