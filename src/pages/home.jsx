@@ -1,5 +1,5 @@
-import React, { useState,useEffect, useMemo } from 'react'
-import {Link,useNavigate} from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { salonImages, bookStoreImages, superMarketImages, restaurantsImages } from '../components/BusinessSection/images';
 import BusinessSection from '../components/BusinessSection/businessSection';
@@ -8,8 +8,11 @@ import superMarketPic from '../images/home/superMarket-pic.jpg';
 import HomeCarousel from '../components/homePage/homeCarousel';
 import HomePageIcons from '../components/homePage/homePageIcons';
 
-function Home() {
+// Import the LocationComponent
+import LocationComponent from '../components/UserLocation/LocationComponent';
 
+
+function Home() {
 
   const [businesses, setBusinesses] = useState({
     restaurants: [],
@@ -28,18 +31,11 @@ function Home() {
     supermarkets: 'SUPERMARKET',
   };
 
-
   const fetchBusinesses = async (category, key) => {
     const token = localStorage.getItem("accessToken");
     try {
       const response = await axios.get(
-        `http://127.0.0.1:8000/api/businesses/?category=${category}`,
-        // {
-        //   headers: {
-        //     Authorization: `Bearer ${token}`,
-        //     'Content-Type': 'application/json',
-        //   },
-        // }
+        `http://127.0.0.1:8000/api/businesses/?category=${category}`
       );
       setBusinesses((prev) => ({ ...prev, [key]: response.data }));
     } catch (err) {
@@ -58,52 +54,56 @@ function Home() {
     };
   
     fetchAllBusinesses();
-
   }, []);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 
   return (
-    
     <div>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
-        <div >
-          < HomeCarousel />
-        </div>
-        <section>
+      {/* Include LocationComponent here */}
+      <LocationComponent />
+
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+      
+      <div>
+        <HomeCarousel />
+      </div>
+      
+      <section>
         <div className="text-center glass h-44 w-full">
-          < HomePageIcons />
+          <HomePageIcons />
         </div>
       </section>
+      
       <div>
         <p className="text-center"><a href="/registerbusiness">Register now</a></p>
       </div>
-        <div id="restaurants">
-          <BusinessSection  arr={businesses.restaurants} image={restaurantsImages}/>
-        </div>
 
-        <br />
-        <div id="salons">
-          <BusinessSection1 arr={businesses.salons} image={salonImages}/>
-        </div>
-        <br />
-        <div id="supermarkets">
-          <BusinessSection arr={businesses.supermarkets} image={superMarketImages}/>
-        </div>
-        <br />
-        <div id="bookstores">
-          <BusinessSection1 arr={businesses.bookstores} image={bookStoreImages}/>
+      <div id="restaurants">
+        <BusinessSection arr={businesses.restaurants} image={restaurantsImages} />
       </div>
 
+      <br />
+      <div id="salons">
+        <BusinessSection1 arr={businesses.salons} image={salonImages} />
+      </div>
+      <br />
+      <div id="supermarkets">
+        <BusinessSection arr={businesses.supermarkets} image={superMarketImages} />
+      </div>
+      <br />
+      <div id="bookstores">
+        <BusinessSection1 arr={businesses.bookstores} image={bookStoreImages} />
+      </div>
 
-      <div className="m-20 container h-96 ">
+      <div className="m-20 container h-96">
         <div>
-          <p className="text-center">our happy users</p>
+          <p className="text-center">Our happy users</p>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;

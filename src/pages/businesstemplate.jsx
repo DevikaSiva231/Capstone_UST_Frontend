@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import Event from "../components/Events/events";
 import {useLocation} from 'react-router-dom'
 import Calendar from "../components/BusinessSection/calender";
+import ReviewSection from "../components/Reviews/reviewSection";
+import BusinessTimings from "../components/BusinessSection/businessTimings";
 
 function Businesstemplate() {
   const location = useLocation();
@@ -18,9 +20,6 @@ function Businesstemplate() {
   // const rawAddress = "Thakadiyil Chelad Karingazha Keerampara";
   // const addresses = encodeURIComponent(rawAddress).replace(/%20/g, '+');
 
-  // console.log(addresses);
-
-  // Construct the Google Maps URL with encoded address and zipcode
   const googleMapsUrl = `https://www.google.com/maps/embed/v1/place?key=${API_KEY}&q=${encodeURIComponent(`${address}, ${zipcode}`)}`;
 
 
@@ -78,13 +77,6 @@ function Businesstemplate() {
   const randomColor = colors[Math.floor(Math.random() * colors.length)];
 
   return (
-    // <div>Businesstemplate
-    //     Events poster,
-    //     Address,
-    //     Description,
-    //     location (map),
-    //     products,price,
-    //     reviews,
     <>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
       
@@ -167,34 +159,12 @@ function Businesstemplate() {
 
       {/* booking and Timing Section */}
       <div className="">
+
         <div className="grid grid-cols-2">
-        <div style={{ backgroundColor: "", padding: "2rem", borderRadius: "4px" }}>
-  <p className="text-4xl font-semibold text-black text-center " style={{ fontFamily: 'Playfair Display, serif' }}>Our Timings</p>
-  
-  <div className="text-black text-lg">
-    <p className="flex justify-between mb-1">
-      <span>Monday:</span> <span>{business.work_time.Monday.open} - {business.work_time.Monday.close}</span>
-    </p>
-    <p className="flex justify-between mb-1">
-      <span>Tuesday:</span> <span>{business.work_time.Tuesday.open} - {business.work_time.Tuesday.close}</span>
-    </p>
-    <p className="flex justify-between mb-2">
-      <span>Wednesday:</span> <span>{business.work_time.Wednesday.open} - {business.work_time.Wednesday.close}</span>
-    </p>
-    <p className="flex justify-between mb-2">
-      <span>Thursday:</span> <span>{business.work_time.Thursday.open} - {business.work_time.Thursday.close}</span>
-    </p>
-    <p className="flex justify-between mb-2">
-      <span>Friday:</span> <span>{business.work_time.Friday.open} - {business.work_time.Friday.close}</span>
-    </p>
-    <p className="flex justify-between mb-2">
-      <span>Saturday:</span> <span>{business.work_time.Saturday.open} - {business.work_time.Saturday.close}</span>
-    </p>
-    <p className="flex justify-between mb-2">
-      <span>Sunday:</span> <span>{business.work_time.Sunday.open}</span>
-    </p>
-  </div>
-</div>
+
+       
+          <BusinessTimings workTime={business.work_time} />
+
 
           <div className="bg-[url()]">
             <br/>
@@ -209,188 +179,7 @@ function Businesstemplate() {
       </div>
 
       {/* Reviews Section */}
-      <div className="mx-auto ml-14 py-12 text-center">
-        <h2 className="text-2xl font-semibold mb-4">
-          Heres what our customer have to say.
-        </h2>
-        <br />
-        <div className="grid grid-cols-3 gap-4 ml-2">
-          <div className="card bg-base-100 w-80 shadow-xl">
-            <div className="card-body">
-              <h2 className="card-title">Card title!</h2>
-              <p>If a dog chews shoes whose shoes does he choose?</p>
-              <br />
-              <div className="card-actions justify-end">
-                {/* <button className="btn btn-primary">Buy Now</button> */}
-                <div className="rating gap-1">
-                  <input
-                    type="radio"
-                    name="rating-3"
-                    className="mask mask-heart bg-red-400"
-                  />
-                  <input
-                    type="radio"
-                    name="rating-3"
-                    className="mask mask-heart bg-orange-400"
-                    defaultChecked
-                  />
-                  <input
-                    type="radio"
-                    name="rating-3"
-                    className="mask mask-heart bg-yellow-400"
-                  />
-                  <input
-                    type="radio"
-                    name="rating-3"
-                    className="mask mask-heart bg-lime-400"
-                  />
-                  <input
-                    type="radio"
-                    name="rating-3"
-                    className="mask mask-heart bg-green-400"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="card bg-base-100 w-80 shadow-xl">
-            <div className="card-body">
-              <h2 className="card-title">Card title!</h2>
-              <p>If a dog chews shoes whose shoes does he choose?</p>
-              <br />
-              <div className="card-actions justify-end">
-                {/* <button className="btn btn-primary">Buy Now</button> */}
-                <div className="rating gap-1">
-                  <input
-                    type="radio"
-                    name="rating-3"
-                    className="mask mask-heart bg-red-400"
-                  />
-                  <input
-                    type="radio"
-                    name="rating-3"
-                    className="mask mask-heart bg-orange-400"
-                    defaultChecked
-                  />
-                  <input
-                    type="radio"
-                    name="rating-3"
-                    className="mask mask-heart bg-yellow-400"
-                  />
-                  <input
-                    type="radio"
-                    name="rating-3"
-                    className="mask mask-heart bg-lime-400"
-                  />
-                  <input
-                    type="radio"
-                    name="rating-3"
-                    className="mask mask-heart bg-green-400"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="card bg-base-100 w-80 shadow-xl">
-            <div className="card-body">
-              <h2 className="card-title">Card title!</h2>
-              <p>If a dog chews shoes whose shoes does he choose?</p>
-              <br />
-              <div className="card-actions justify-end">
-                {/* <button className="btn btn-primary">Buy Now</button> */}
-                <div className="rating gap-1">
-                  <input
-                    type="radio"
-                    name="rating-3"
-                    className="mask mask-heart bg-red-400"
-                  />
-                  <input
-                    type="radio"
-                    name="rating-3"
-                    className="mask mask-heart bg-orange-400"
-                    defaultChecked
-                  />
-                  <input
-                    type="radio"
-                    name="rating-3"
-                    className="mask mask-heart bg-yellow-400"
-                  />
-                  <input
-                    type="radio"
-                    name="rating-3"
-                    className="mask mask-heart bg-lime-400"
-                  />
-                  <input
-                    type="radio"
-                    name="rating-3"
-                    className="mask mask-heart bg-green-400"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="card bg-base-100 w-80 shadow-xl">
-            <div className="card-body">
-              <h2 className="card-title">Card title!</h2>
-              <p>If a dog chews shoes whose shoes does he choose?</p>
-              <br />
-              <div className="card-actions justify-end">
-                {/* <button className="btn btn-primary">Buy Now</button> */}
-                <div className="rating gap-1">
-                  <input
-                    type="radio"
-                    name="rating-3"
-                    className="mask mask-heart bg-red-400"
-                  />
-                  <input
-                    type="radio"
-                    name="rating-3"
-                    className="mask mask-heart bg-orange-400"
-                    defaultChecked
-                  />
-                  <input
-                    type="radio"
-                    name="rating-3"
-                    className="mask mask-heart bg-yellow-400"
-                  />
-                  <input
-                    type="radio"
-                    name="rating-3"
-                    className="mask mask-heart bg-lime-400"
-                  />
-                  <input
-                    type="radio"
-                    name="rating-3"
-                    className="mask mask-heart bg-green-400"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Locations Section */}
-      <div className="glass mx-auto py-12 text-center">
-        <h2 className="text-2xl font-semibold mb-4">Our Location</h2>
-        <p className="text-center">{address}, {zipcode}</p>
-        <div className="ml-72 w-96">
-        {/* <p>location map</p> */}
-          <iframe className=""
-            title="Google Maps Location"
-            src={googleMapsUrl}
-            width="700"
-            height="300"
-            style={{ border: 0 }}
-            allowFullScreen=""
-            loading="lazy"
-          ></iframe>
-          </div>
-      </div>
-
+      < ReviewSection />
       {/* Gallery Section */}
       <div className="bg-black mx-auto py-12 text-center">
         <h2 className="text-2xl font-semibold mb-4">gallery</h2>

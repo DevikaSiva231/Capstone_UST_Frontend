@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
+import { clearUserId, clearLocation } from '../../redux/userSlice'; // Ensure correct path
 
 const ProfileDropdown = () => {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.user.userId);
-  console.log('UserId from dropdown: ', userId);
-
+  const accessToken = localStorage.getItem('accessToken');
   const [profilePicture, setProfilePicture] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const accessToken = localStorage.getItem('accessToken');
 
   // Function to fetch the user's profile picture
   const fetchProfilePicture = async () => {
@@ -30,7 +29,6 @@ const ProfileDropdown = () => {
 
       if (picture) {
         setProfilePicture(picture);
-        console.log('Profile Pic:', picture);
       } else {
         console.warn('Profile picture not found in response:', response.data);
       }
@@ -42,17 +40,18 @@ const ProfileDropdown = () => {
     }
   };
 
-  // Update useEffect to run only when userId is available
   useEffect(() => {
-    if (userId) {
+    if (userId && accessToken) {
       fetchProfilePicture();
     }
-  }, [userId, accessToken]);
+  }, [userId]);
 
   // Handle Logout
   const handleLogout = () => {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
+    dispatch(clearUserId());
+    dispatch(clearLocation());
     window.location.reload();
   };
 
@@ -89,7 +88,11 @@ const ProfileDropdown = () => {
     <div className="dropdown dropdown-end">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">
-          <img alt="User Profile" src={profilePicture} />
+          <img
+            alt="User Profile"
+            src={profilePicture || 'defaultProfilePic.png'}
+            onError={(e) => e.target.src = 'defaultProfilePic.png'} // Fallback image
+          />
         </div>
       </div>
       <ul

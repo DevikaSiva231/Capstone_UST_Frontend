@@ -1,55 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { setLocation } from '../../redux/userSlice';
 
 const LocationComponent = () => {
-  const [location, setLocation] = useState(null);
-  const [errorMessage, setErrorMessage] = useState(null);
+  const dispatch = useDispatch();
 
   const requestLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          setLocation({
+          dispatch(setLocation({
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,
-          });
+          }));
         },
         (error) => {
-          switch (error.code) {
-            case error.PERMISSION_DENIED:
-              setErrorMessage("Location access denied by user.");
-              break;
-            case error.POSITION_UNAVAILABLE:
-              setErrorMessage("Location information is unavailable.");
-              break;
-            case error.TIMEOUT:
-              setErrorMessage("Location request timed out.");
-              break;
-            default:
-              setErrorMessage("An unknown error occurred.");
-          }
+          console.error("Error accessing location:", error);
+          // Optionally handle errors here, if needed for logging or analytics
         }
       );
     } else {
-      setErrorMessage("Geolocation is not supported by this browser.");
+      console.error("Geolocation is not supported by this browser.");
     }
   };
 
-  // Use useEffect to request location as soon as the component mounts
   useEffect(() => {
     requestLocation();
-  }, []); // Empty dependency array ensures it runs only on mount
+  }, [dispatch]);
 
-  return (
-    <div>
-      <h1>Find Nearby Businesses</h1>
-      {location ? (
-        <p>Your location: Latitude {location.latitude}, Longitude {location.longitude}</p>
-      ) : (
-        <p>We’d like to use your location to show businesses near you. Please allow location access.</p>
-      )}
-      {errorMessage && <p>{errorMessage}</p>}
-    </div>
-  );
+  return null;
 };
 
 export default LocationComponent;
