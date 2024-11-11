@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearUserId, clearLocation } from '../../redux/userSlice'; // Ensure correct path
+import { clearUserId, clearLocation } from '../../redux/userSlice'; 
+import { Link, useNavigate } from 'react-router-dom';
 
 const ProfileDropdown = () => {
   const dispatch = useDispatch();
@@ -10,6 +11,7 @@ const ProfileDropdown = () => {
   const [profilePicture, setProfilePicture] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   // Function to fetch the user's profile picture
   const fetchProfilePicture = async () => {
@@ -52,7 +54,7 @@ const ProfileDropdown = () => {
     localStorage.removeItem('refreshToken');
     dispatch(clearUserId());
     dispatch(clearLocation());
-    window.location.reload();
+    navigate('/home'); // Navigate without reloading the page
   };
 
   if (!accessToken) {
@@ -87,22 +89,30 @@ const ProfileDropdown = () => {
   return (
     <div className="dropdown dropdown-end">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-        <div className="w-10 rounded-full">
-          <img
-            alt="User Profile"
-            src={profilePicture || 'defaultProfilePic.png'}
-            onError={(e) => e.target.src = 'defaultProfilePic.png'} // Fallback image
-          />
+        {/* Flex Container for Profile Picture and Register Business Button */}
+        <div className="flex items-center gap-4 flex-row">
+          <div className="flex-shrink-0">
+            {/* Profile Picture */}
+            <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-gray-300">
+              <img
+                alt="User Profile"
+                src={profilePicture || 'defaultProfilePic.png'}
+                className="w-full h-full object-cover"
+                onError={(e) => (e.target.src = 'defaultProfilePic.png')}
+              />
+            </div>
+          </div>
         </div>
       </div>
+
       <ul
         tabIndex={0}
         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
       >
         <li>
-          <a href="/profile" className="justify-between">
+          <Link to="/userDashboard" className="justify-between">
             Profile
-          </a>
+          </Link>
         </li>
         <li>
           <a onClick={handleLogout}>Logout</a>

@@ -2,22 +2,21 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 
-const ReviewForm = () => {
+const ReviewForm = ({businessId}) => {
     const userId = useSelector((state) => state.user.userId); // Access userId from Redux
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [rating, setRating] = useState('');
     const [likes, setLikes] = useState(0);
-    const [business, setBusiness] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!userId) return; // Ensure userId is present
 
-        const reviewData = { title, content, rating, likes, user: userId, business };
+        const reviewData = { title, content, rating, likes, user: userId};
 
         try {
-            await axios.post('http://127.0.0.1:8000/api/reviews/', reviewData);
+            await axios.post(`http://127.0.0.1:8000/api/reviews/`, reviewData);
             alert('Review submitted successfully!');
         } catch (error) {
             alert('Failed to submit review');
@@ -77,16 +76,6 @@ const ReviewForm = () => {
                         value={likes}
                         onChange={(e) => setLikes(e.target.value)}
                         className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                </div>
-                <div>
-                    <label className="block text-gray-600">Business</label>
-                    <input
-                        type="text"
-                        value={business}
-                        onChange={(e) => setBusiness(e.target.value)}
-                        className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        required
                     />
                 </div>
                 </div>

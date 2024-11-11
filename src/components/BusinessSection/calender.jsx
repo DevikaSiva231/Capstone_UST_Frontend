@@ -61,7 +61,7 @@ const Calendar = ({ id }) => {
         onSelect={setSelected}
         modifiers={{ highlighted: highlightedDates }}
         modifiersStyles={{
-          highlighted: { backgroundColor: '#4caf50', color: 'white',borderRadius: '50%', 
+          highlighted: { backgroundColor: '#DCA244', color: 'black',borderRadius: '50%', 
           padding: '5px', },
         }}
         footer={

@@ -1,6 +1,8 @@
 import React from 'react'
-import {useNavigate} from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import ProfileDropdown from '../components/homePage/ProfileDropDown';
+import RegisterBusiness from '../components/homePage/registerbusiness';
 import SearchComponent from '../components/UserLocation/searchComponent';
 
 function Navbar() {
@@ -32,35 +34,26 @@ function Navbar() {
                     tabIndex={0}
                     className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                     <li><a>Home</a></li>
-                    <li>
-                    <a>Menu</a>
-                    <ul className="p-2">
-                        <li><a>Start a business</a></li>
-                        <li><a>Submenu 2?</a></li>
-                    </ul>
-                    </li>
                     <li><a>About Us</a></li>
                 </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">Around Town</a>
+                <a onClick={()=>navigate('/')} className="btn btn-ghost text-xl">Around Town</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
-                <li><a href="/">Home</a></li>
-                <li>
-                    <details>
-                    <summary>Parent</summary>
-                    <ul className="p-2">
-                        <li><a>Submenu 1</a></li>
-                        <li><a>Submenu 2</a></li>
-                    </ul>
-                    </details>
-                </li>
-                <li><a href="/about">About Us</a></li>
+                    <li>
+                        <Link to="/" className="justify-between">Home</Link>
+                    </li>
+                    <li>
+                        <Link to="/about" className="justify-between">About Us</Link>
+                    </li>
                 </ul>
             </div>
-                <div className="flex-none gap-2 navbar-end">
-                    <div className="form-control absolute z-10 top-1 right-96">
+                <div className="flex-none gap-2 navbar-end relative">
+                    <div className="flex-shrink-0">
+                        <RegisterBusiness />
+                    </div>
+                    <div className="form-control absolute z-2 top-0 right-96">
                         <SearchComponent/>
                     </div>
                     < ProfileDropdown />

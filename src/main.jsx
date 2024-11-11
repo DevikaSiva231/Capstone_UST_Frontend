@@ -7,16 +7,18 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Layout from './layout'
 import Home from './pages/home'
 import Login from './pages/login'
-import Registerbusiness from './pages/registerbusiness'
+import Registerbusiness from './components/homePage/registerbusiness'
 import Businesstemplate from './pages/businesstemplate'
 import About from './pages/about'
 import Ownerprofile from './pages/ownerprofile'
 import Signup from './pages/signup'
-import Userprofile from './pages/userprofile'
 import Searchrestaurent from './pages/searchrestaurent'
 import Rough from './pages/rough'
 import { Provider } from 'react-redux'
 import store from './redux/store'
+import Dashboard from './components/DashBoardUsers/dashboard'
+import RegisterBusiness from './components/homePage/registerbusiness'
+import BusinessFormPage from './components/homePage/BusinessFormPage'
 
 const router=createBrowserRouter([
   {
@@ -27,12 +29,11 @@ const router=createBrowserRouter([
       {path:"/home",element:<Home/>},
       {path:"/signup",element:<Signup/>},
       {path:"/login",element:<Login/>},
-      {path:"/about",element:<About/>},
-      {path:"/registerbusiness",element:<Registerbusiness/>},
       {path:"/business",element:<Businesstemplate/>},
       {path:"/ownerprofile",element:<Ownerprofile/>},
-      {path:"/userprofile",element:<Userprofile/>},
       {path:"/searchrestaurent",element:<Searchrestaurent/>},
+      {path:"/userDashboard",element:<Dashboard/>},
+      {path:"/registerBusiness",element:<BusinessFormPage/>},
       {path:"/rough",element:<Rough/>},
     ]
   }

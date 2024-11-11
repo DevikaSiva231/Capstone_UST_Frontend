@@ -76,24 +76,40 @@ function Home() {
         </div>
       </section>
       
-      <div>
-        <p className="text-center"><a href="/registerbusiness">Register now</a></p>
+      <br />
+      <div id="restaurants">
+        <BusinessSection 
+          arr={businesses.restaurants} 
+          image={restaurantsImages} 
+          businessCategory={businesses.restaurants.length > 0 ? businesses.restaurants[0].category : 'No category available'} 
+        />
       </div>
-        <div id="restaurants">
-          <BusinessSection  arr={businesses.restaurants} image={restaurantsImages}/>
-        </div>
-        <br />
-        <div id="salons">
-          <BusinessSection1 arr={businesses.salons} image={salonImages}/>
-        </div>
-        <br />
-        <div id="supermarkets">
-          <BusinessSection arr={businesses.supermarkets} image={superMarketImages}/>
-        </div>
-        <br />
-        <div id="bookstores">
-          <BusinessSection1 arr={businesses.bookstores} image={bookStoreImages}/>
+      <br />
+      <div id="salons">
+        <BusinessSection1 
+          arr={businesses.salons} 
+          image={salonImages} 
+          businessCategory={businesses.salons.length > 0 ? businesses.salons[0].category : 'No category available'} 
+        />
       </div>
+      <br />
+      <div id="supermarkets">
+        <BusinessSection 
+          arr={businesses.supermarkets} 
+          image={superMarketImages} 
+          businessCategory={businesses.supermarkets.length > 0 ? businesses.supermarkets[0].category : 'No category available'} 
+        />
+      </div>
+      <br />
+      <div id="bookstores">
+        <BusinessSection1 
+          arr={businesses.bookstores} 
+          image={bookStoreImages} 
+          businessCategory={businesses.bookstores.length > 0 ? businesses.bookstores[0].category : 'No category available'} 
+        />
+      </div>
+
+
       <div className="m-20 container h-96 ">
         <div>
           <p className="text-center">Our happy users</p>

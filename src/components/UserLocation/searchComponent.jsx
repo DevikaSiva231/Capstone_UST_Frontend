@@ -66,13 +66,39 @@ const SearchComponent = () => {
   return (
     <div>
       <TextField
+        className="border-[#D8A32A] text-[#D8A32A] rounded-lg"
         label="Search Business by Name, Address, or Zipcode"
         variant="outlined"
         fullWidth
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
-        sx={{ mb: 2 }}
-      />
+        sx={{
+          mb: 2,
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': {
+              borderColor: '#D8A32A', // Gold border
+            },
+            '&:hover fieldset': {
+              borderColor: '#D8A32A',
+            },
+            '&.Mui-focused fieldset': {
+              borderColor: '#D8A32A',
+            },
+            padding: '6px 16px', // Adjusted padding (6px for vertical, 16px for horizontal)
+          },
+          '& .MuiInputLabel-root': {
+            color: '#D8A32A', // Gold label color
+          },
+          '& .MuiInputBase-input': {
+            color: '#D8A32A', // Gold text color
+            fontSize: '14px', // Set font size to 14px
+            textAlign: 'center', // Center the text horizontally
+            paddingY: '6px', // Vertical padding for better centering
+            paddingX: '16px', // Horizontal padding
+            height: 'auto', // Ensure the height adjusts to content (for vertical centering)
+          },
+        }}
+/>
 
       {/* Show dropdown only if there's a search query */}
       {searchQuery && (

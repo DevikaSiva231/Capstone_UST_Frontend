@@ -7,21 +7,18 @@ import Calendar from "../components/BusinessSection/calender";
 import ReviewSection from "../components/Reviews/reviewSection";
 import BusinessTimings from "../components/BusinessSection/businessTimings";
 import ReviewForm from "../components/Reviews/reviewForm";
+import GoogleMapsBusiness from "../components/UserLocation/googleMaps";
+import setRef from "@mui/utils/setRef";
 
 function Businesstemplate() {
   const location = useLocation();
   const { id } = location.state || {};
-  console.log(id)
-
-  const API_KEY = '';
-
-  const address = 'Thakadiyil+Chelad+Karingazha+Keerampara';
-  const zipcode = '686681';
+  const [address, setAddress] = useState('');
+  const [zipcode, setZipcode] = useState('');
 
   // const rawAddress = "Thakadiyil Chelad Karingazha Keerampara";
   // const addresses = encodeURIComponent(rawAddress).replace(/%20/g, '+');
 
-  const googleMapsUrl = `https://www.google.com/maps/embed/v1/place?key=${API_KEY}&q=${encodeURIComponent(`${address}, ${zipcode}`)}`;
 
 
   const [prod, setProd] = useState([]);
@@ -60,8 +57,11 @@ function Businesstemplate() {
         // },
       }) 
       .then((response) => {
-        setBusiness(response.data);console.log(response.data)
+        setBusiness(response.data);console.log('Template:',response.data);
+        setRef
         setLoading(false);
+        setAddress(encodeURIComponent(response.data.address).replace(/%20/g, '+'));
+        setZipcode(response.data.zipcode);
       }).catch((error) => {
         setError(error);
         setLoading(false);
@@ -89,11 +89,11 @@ function Businesstemplate() {
       {/* About Section */}
       <div className="m-10 ml-18 h-44">
         <div className="text-center">
-          <h2 className="text-2xl text-center font-semibold mt-20 mb-4">Welcome</h2>
+        <h2 className="text-6xl text-center font-semibold italic mt-20 mb-4">Welcome</h2>
           {business && (
             <div id={business.id}>
-              <p className="text-gray-700 text-center">{business.description}</p>
-              <p className="text-gray-700 text-center">{business.address}</p>
+              <p className="text-2xl text-center">{business.description}</p>
+              <p className="text-1xl text-center">{business.address}</p>
             </div>
     )}
           {console.log("business",business.address)}
@@ -107,7 +107,7 @@ function Businesstemplate() {
 
 
             {/* Open the modal using document.getElementById('ID').showModal() method */}
-            <button className="" onClick={()=>document.getElementById('my_modal_1').showModal()}>open event calender</button>
+            <button className="px-6 py-2 font-semibold rounded-lg shadow-md hover:bg-black-600 transition-colors glass" onClick={()=>document.getElementById('my_modal_1').showModal()}>Event Calender</button>
             <dialog id="my_modal_1" className="modal">
             <div className="modal-box glass">
               <h3 className="font-bold text-lg">Hello!</h3>
@@ -207,7 +207,13 @@ function Businesstemplate() {
       </div>
 
       {/* Reviews Section */}
-      < ReviewSection />
+      < ReviewSection businessId={id} />
+
+      { /* Google Map Section */}
+      <div className="bg-black mx-auto py-12 flex justify-center items-center">
+        <GoogleMapsBusiness address={address} zipcode={zipcode} />
+      </div>
+
       {/* Gallery Section */}
       <div className="bg-black mx-auto py-12 text-center">
         <h2 className="text-2xl font-semibold mb-4">gallery</h2>
