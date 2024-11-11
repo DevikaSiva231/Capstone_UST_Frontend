@@ -38,7 +38,7 @@ function Login() {
 
   return (
     <div>
-      <div className="hero min-h-screen">
+      <div className="hero min-h-screen bg-[url(https://images.pexels.com/photos/19676932/pexels-photo-19676932/free-photo-of-sunset-over-a-lake.jpeg?auto=compress&cs=tinysrgb&w=600)]">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
             <h1 className="text-5xl font-bold">Login now</h1>

@@ -6,6 +6,7 @@ import {useLocation} from 'react-router-dom'
 import Calendar from "../components/BusinessSection/calender";
 import ReviewSection from "../components/Reviews/reviewSection";
 import BusinessTimings from "../components/BusinessSection/businessTimings";
+import ReviewForm from "../components/Reviews/reviewForm";
 
 function Businesstemplate() {
   const location = useLocation();
@@ -105,22 +106,21 @@ function Businesstemplate() {
           <br/>
 
 
-{/* Open the modal using document.getElementById('ID').showModal() method */}
-<button className="" onClick={()=>document.getElementById('my_modal_1').showModal()}>open event calender</button>
-<dialog id="my_modal_1" className="modal">
-<div className="modal-box">
-  <h3 className="font-bold text-lg">Hello!</h3>
-  <p className="py-4 flex justify-center items-center">
-    <Calendar id={id} />
-  </p>
-  <div className="modal-action">
-    <form method="dialog">
-      <button className="btn">Close</button>
-    </form>
-  </div>
-</div>
-
-</dialog>
+            {/* Open the modal using document.getElementById('ID').showModal() method */}
+            <button className="" onClick={()=>document.getElementById('my_modal_1').showModal()}>open event calender</button>
+            <dialog id="my_modal_1" className="modal">
+            <div className="modal-box glass">
+              <h3 className="font-bold text-lg">Hello!</h3>
+              <p className="py-4 flex justify-center items-center">
+                <Calendar id={id} />
+              </p>
+              <div className="modal-action">
+                <form method="dialog">
+                  <button className="btn">Close</button>
+                </form>
+              </div>
+            </div>
+            </dialog>
 
         </div>   
       </div>
@@ -133,24 +133,24 @@ function Businesstemplate() {
         <div className="mt-14 ml-24 grid grid-cols-3 gap-3">
          {prod.map((product, index) => (
          <div key={index}>
-            <div className="card card-compact bg-base-100 w-72 h-96 shadow-xl rounded-none">
-              <figure className="h-48 rounded-none overflow-hidden">
-                <img
-                 src={product.image}
-                 alt="Product Image"
-                 className="h-full w-full object-cover rounded-none"
-                />
-              </figure>
-           <div className="card-body h-48 p-2 overflow-hidden rounded-none">
-            <h2 className="card-title text-sm truncate">{product.product_name}</h2>
-            <p className="text-xs truncate">{product.description}</p>
-           <div className="flex justify-between text-sm">
-                <p>Quantity: {product.quantity}</p>
-                <p>Price: {product.price}</p>
-            </div>
+            <div className="card card-compact bg-base-100 w-72 h-96 shadow-xl rounded-lg overflow-hidden">
+  <figure className="h-7/10 w-full overflow-hidden">
+    <img
+      src={product.image}
+      alt="Product Image"
+      className="h-96 w-full object-cover rounded-t-lg"
+    />
+  </figure>
+  <div className="card-body h-3/10 p-4 flex flex-col justify-between">
+    <h2 className="card-title text-sm truncate">{product.product_name}</h2>
+    <p className="text-xs truncate">{product.description}</p>
+    <div className="flex justify-between text-sm">
+      <p>Quantity: {product.quantity}</p>
+      <p>Price: {product.price}</p>
+    </div>
+  </div>
+</div>
 
-        </div>
-      </div>
     </div>
   ))}
 </div>
@@ -159,21 +159,49 @@ function Businesstemplate() {
 
       {/* booking and Timing Section */}
       <div className="">
+      <div className="grid grid-cols-3 gap-4">
 
-        <div className="grid grid-cols-2">
+        {/* Business Timings */}
+          <div className="">
+            <BusinessTimings workTime={business.work_time} />
+          </div>
+          
+          {/* Image Container */}
+          <div className="h-full w-full">
+            <img
+              className="w-full h-96 object-cover"
+              src="https://images.pexels.com/photos/8059271/pexels-photo-8059271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              alt="Business"
+            />
+          </div>
 
-       
-          <BusinessTimings workTime={business.work_time} />
-
-
-          <div className="bg-[url()]">
-            <br/>
-            <h1 className="text-2xl text-center mt-2 text-white"> Contact Us</h1><br/>
-            <div className="ml-32 card glass w-full max-w-sm shrink-0 shadow-2xl">
-              <p>Phone number:{business.phone}</p>
+          {/* Contact Us Section */}
+          <div className="text-center w-full max-w-lg p-6 glass rounded-lg shadow-lg">
+            <h1 className="text-3xl font-semibold mb-6">Contact Us</h1>
+            <div className="space-y-4">
+              <p>Phone number: {business.phone}</p>
               <p>Email: {business.email}</p>
             </div>
-            <br/>
+            <div className="mt-6">
+              <button 
+                className="px-6 py-2 font-semibold rounded-lg shadow-md hover:bg-black-600 transition-colors"
+                onClick={()=>document.getElementById('reviewbox').showModal()}>
+                Want to Leave a Review?
+              </button>
+              <dialog id="reviewbox" className="modal">
+                <div className="modal-box glass">
+                  <h3 className="font-bold text-lg">Hello!</h3>
+                  <p className="py-4 flex justify-center items-center">
+                    <ReviewForm/>
+                  </p>
+                  <div className="modal-action">
+                    <form method="dialog">
+                      <button className="btn">Close</button>
+                    </form>
+                  </div>
+                </div>
+                </dialog>
+            </div>
           </div>
         </div>
       </div>

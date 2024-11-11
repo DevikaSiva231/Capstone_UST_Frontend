@@ -23,7 +23,7 @@ const BusinessSection1 = ({arr, image}) => {
                     className="rounded-none"
                   />
                 </figure>
-                <div className="card-body h-44 p-2 overflow-hidden rounded-none">
+                <div className="card-body overflow-hidden rounded-none">
                   <h2 className="card-title">{restaurant.b_name}</h2>
                   <p>{restaurant.description}</p>
                   <div className="card-actions justify-end">

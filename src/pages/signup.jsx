@@ -68,7 +68,7 @@ function Signup() {
 
   return (
     <div>
-      <div className="hero glass min-h-screen">
+      <div className="hero glass min-h-screen bg-[url(https://images.pexels.com/photos/15309299/pexels-photo-15309299/free-photo-of-drawing-in-book.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)]">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
             <h1 className="text-5xl font-bold">Sign Up now</h1>

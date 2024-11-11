@@ -6,7 +6,7 @@ import { Outlet } from 'react-router';
 function Layout() {
   return (
       <>
-    <div style={{backgroundColor:"#E9EACB"}}>
+    <div style={{backgroundColor:"black"}}>
         <Navbar/>
         <Outlet/>
         <Footer/>

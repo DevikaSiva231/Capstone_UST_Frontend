@@ -58,10 +58,10 @@ const ProfileDropdown = () => {
   if (!accessToken) {
     return (
       <div className="flex space-x-4">
-        <button className="btn btn-primary" onClick={() => window.location.href = '/login'}>
+        <button className="btn" onClick={() => window.location.href = '/login'}>
           Login
         </button>
-        <button className="btn btn-secondary" onClick={() => window.location.href = '/signup'}>
+        <button className="btn" onClick={() => window.location.href = '/signup'}>
           Sign Up
         </button>
       </div>

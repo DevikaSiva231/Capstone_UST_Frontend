@@ -79,25 +79,22 @@ function Home() {
       <div>
         <p className="text-center"><a href="/registerbusiness">Register now</a></p>
       </div>
-
-      <div id="restaurants">
-        <BusinessSection arr={businesses.restaurants} image={restaurantsImages} />
+        <div id="restaurants">
+          <BusinessSection  arr={businesses.restaurants} image={restaurantsImages}/>
+        </div>
+        <br />
+        <div id="salons">
+          <BusinessSection1 arr={businesses.salons} image={salonImages}/>
+        </div>
+        <br />
+        <div id="supermarkets">
+          <BusinessSection arr={businesses.supermarkets} image={superMarketImages}/>
+        </div>
+        <br />
+        <div id="bookstores">
+          <BusinessSection1 arr={businesses.bookstores} image={bookStoreImages}/>
       </div>
-
-      <br />
-      <div id="salons">
-        <BusinessSection1 arr={businesses.salons} image={salonImages} />
-      </div>
-      <br />
-      <div id="supermarkets">
-        <BusinessSection arr={businesses.supermarkets} image={superMarketImages} />
-      </div>
-      <br />
-      <div id="bookstores">
-        <BusinessSection1 arr={businesses.bookstores} image={bookStoreImages} />
-      </div>
-
-      <div className="m-20 container h-96">
+      <div className="m-20 container h-96 ">
         <div>
           <p className="text-center">Our happy users</p>
         </div>

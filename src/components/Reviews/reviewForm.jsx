@@ -37,6 +37,7 @@ const ReviewForm = () => {
         <div className="max-w-md mx-auto p-8 bg-white rounded-xl shadow-lg space-y-6 transition-all hover:shadow-2xl transform hover:scale-105 duration-300">
             <h2 className="text-2xl font-semibold text-gray-800 mb-4">Submit Your Review</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid grid-cols-2 gap-2">
                 <div>
                     <label className="block text-gray-600">Title</label>
                     <input
@@ -47,7 +48,7 @@ const ReviewForm = () => {
                         required
                     />
                 </div>
-                <div>
+                <div className="row-span-2">
                     <label className="block text-gray-600">Content</label>
                     <textarea
                         value={content}
@@ -87,6 +88,7 @@ const ReviewForm = () => {
                         className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                         required
                     />
+                </div>
                 </div>
                 <button
                     type="submit"

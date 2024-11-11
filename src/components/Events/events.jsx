@@ -37,9 +37,15 @@ function Event({name, id, mainImage}) {
           className="w-full"
           alt="Event 1"
           />
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white bg-opacity-75 p-4 rounded-lg shadow-lg">
-            <h3 className="text-xl font-semibold">{name}</h3>
-      </div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-36 h-36 bg-black rounded-full flex items-center justify-center">
+            <div className="w-28 h-28 bg-[#FFD700] rounded-full flex items-center justify-center">
+            <div className="w-24 h-24 bg-black rounded-full flex items-center justify-center">
+              <h3 className="text-xl font-semibold text-[#FFD700]">{name}</h3>
+              </div>
+            </div>
+          </div>
+
+
         
       </div>
       {events.map((eventitem,index) =>(
