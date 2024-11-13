@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearUserId, clearLocation } from '../../redux/userSlice'; 
+import { clearUserId, clearLocation, clearIsBusinessOwner } from '../../redux/userSlice'; 
 import { Link, useNavigate } from 'react-router-dom';
 
 const ProfileDropdown = () => {
@@ -54,6 +54,7 @@ const ProfileDropdown = () => {
     localStorage.removeItem('refreshToken');
     dispatch(clearUserId());
     dispatch(clearLocation());
+    dispatch(clearIsBusinessOwner());
     navigate('/home'); // Navigate without reloading the page
   };
 

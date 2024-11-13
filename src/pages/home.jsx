@@ -10,6 +10,8 @@ import HomePageIcons from '../components/homePage/homePageIcons';
 
 // Import the LocationComponent
 import LocationComponent from '../components/UserLocation/LocationComponent';
+import HappyUsersSection from '../components/BusinessSection/happyUsersSection';
+import HappyUsersContainer from './happyUsersContainer';
 
 
 function Home() {
@@ -110,11 +112,7 @@ function Home() {
       </div>
 
 
-      <div className="m-20 container h-96 ">
-        <div>
-          <p className="text-center">Our happy users</p>
-        </div>
-      </div>
+      < HappyUsersContainer />
     </div>
   );
 }

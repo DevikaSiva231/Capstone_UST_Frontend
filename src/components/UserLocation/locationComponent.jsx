@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setLocation } from '../../redux/userSlice';
 
 const LocationComponent = () => {
   const dispatch = useDispatch();
+  
+  // Get latitude and longitude from Redux state
+  const { latitude, longitude } = useSelector((state) => state.user);
 
   const requestLocation = () => {
     if (navigator.geolocation) {
@@ -25,8 +28,11 @@ const LocationComponent = () => {
   };
 
   useEffect(() => {
-    requestLocation();
-  }, [dispatch]);
+    // Only request location if latitude or longitude is not set
+    if (latitude === null || longitude === null) {
+      requestLocation();
+    }
+  }, [dispatch, latitude, longitude]); // Re-run effect only if latitude or longitude changes
 
   return null;
 };

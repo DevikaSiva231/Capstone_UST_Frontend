@@ -1,27 +1,49 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import UserProfile from '../../pages/ownerprofile';
-import BusinessList from './businessList';
-import UserReviewSection from './userReviewSection';
+import React, { useState, useEffect } from "react";
+import axios from "axios"; // Axios for API calls
+import SideNavigation from "./SideNavigation";
+import UserDetails from "./UserDetails";
+import UserReviews from "./UserReviews";
+import BusinessOwnerDashboard from "./BusinessReviews";
+import Inventory from "./Inventory";
+import Events from "./Events";
+import { useSelector } from "react-redux";
 
 const Dashboard = () => {
-    const userId = useSelector((state) => state.user.userId);
-    const isBusinessOwner = useSelector((state) => state.user.isBusinessOwner);
+  const [activeOption, setActiveOption] = useState("userDetails");
 
-    return (
-        <div className="dashboard-container p-4">
-            <h1 className="text-3xl font-bold mb-6">Dashboard</h1>
-            <UserProfile userId={userId} />
-            {isBusinessOwner && (
-                <>
-                    <h2 className="text-2xl font-semibold mb-4">My Businesses</h2>
-                    <BusinessList userId={userId}/>
-                </>
-            )}
-            <h2 className="text-2xl font-semibold mb-4">My Reviews</h2>
-            <UserReviewSection userId={userId} />
-        </div>
-    );
+  const user = useSelector((state) => state.user); // Get user details from Redux store
+  const isBusinessOwner = user.isBusinessOwner;
+  const userId = user.id; // Assuming `user` has an `id` field
+
+
+  const renderContent = () => {
+    switch (activeOption) {
+      case "userDetails":
+        return <UserDetails />;
+      case "userReviews":
+        return <UserReviews />;
+      case "businessReviews":
+        return <BusinessOwnerDashboard />;
+      case "inventory":
+        return <Inventory />;
+      case "events":
+        return <Events />;
+      default:
+        return <UserDetails />;
+    }
+  };
+
+  return (
+    <div className="flex">
+      <SideNavigation
+        setActiveOption={setActiveOption}
+        isBusinessOwner={isBusinessOwner}
+      />
+      <div className="flex-1 p-6">
+        {renderContent()}
+      </div>
+    </div>
+  );
 };
 
 export default Dashboard;

@@ -19,6 +19,7 @@ import store from './redux/store'
 import Dashboard from './components/DashBoardUsers/dashboard'
 import RegisterBusiness from './components/homePage/registerbusiness'
 import BusinessFormPage from './components/homePage/BusinessFormPage'
+import EventForm from './components/DashBoardUsers/EventHandler/eventForm'
 
 const router=createBrowserRouter([
   {
@@ -34,6 +35,7 @@ const router=createBrowserRouter([
       {path:"/searchrestaurent",element:<Searchrestaurent/>},
       {path:"/userDashboard",element:<Dashboard/>},
       {path:"/registerBusiness",element:<BusinessFormPage/>},
+      {path:"//events/create/:businessId",element:<EventForm/>},
       {path:"/rough",element:<Rough/>},
     ]
   }

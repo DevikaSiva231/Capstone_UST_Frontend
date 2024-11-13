@@ -15,7 +15,7 @@ const BusinessSection1 = ({arr, image, businessCategory}) => {
         <div key={restaurant.id} className="business-category">
           <div className="carousel carousel-center rounded-lg space-x-10 p-2 h-80 relative">
             <div key={restaurant.id} className="carousel-item">
-              <div className="card card-compact bg-base-100 w-72 shadow-xl rounded-lg relative">
+              <div className="card card-compact bg-base-100 w-72 shadow-xl rounded-lg relative p-1">
                 {/* Button in the top right corner */}
                 <button
                   onClick={() =>

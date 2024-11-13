@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setUserId } from '../redux/userSlice';
+import { setUserId, setIsBusinessOwner } from '../redux/userSlice';
 
 function Login() {
   const navigate = useNavigate();
@@ -24,8 +24,10 @@ function Login() {
       const accessToken = tokenResponse.data.access;
       const refreshToken = tokenResponse.data.refresh;
       const userId = tokenResponse.data.userId;
+      const isBusinessOwner = tokenResponse.data.is_business_owner;
 
       dispatch(setUserId(userId));
+      dispatch(setIsBusinessOwner(isBusinessOwner));
 
       localStorage.setItem('accessToken', accessToken);
       localStorage.setItem('refreshToken', refreshToken);

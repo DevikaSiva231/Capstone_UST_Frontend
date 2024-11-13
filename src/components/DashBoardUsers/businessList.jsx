@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import EventManager from './EventManager';
+import EventManager from './EventHandler/EventManager';
 import InventoryManager from './InventoryManager';
-import ReviewManager from './ReviewManager';
+import ReviewManager from './ReviewHandler/reviewManager';
 
 const BusinessList = ({ userId }) => {
     const [businesses, setBusinesses] = useState([]);
@@ -19,17 +19,18 @@ const BusinessList = ({ userId }) => {
 
         fetchBusinesses();
     }, [userId]);
-
+    console.log("businesses-->",businesses);
+    console.log("UserID-->",userId);
     return (
         <div className="business-list">
             {businesses.map((business) => (
-                <div key={business.id} className="business-item mb-4">
-                    <h3 className="text-xl font-semibold">{business.name}</h3>
+               business.owner == userId &&  <div key={business.id} className="business-item mb-4">
+                    <h3 className="text-xl font-semibold">{business.b_name}</h3>
                     <EventManager businessId={business.id} />
                     <InventoryManager businessId={business.id} />
                     <ReviewManager businessId={business.id} />
-                </div>
-            ))}
+                </div> 
+            ))} 
         </div>
     );
 };
