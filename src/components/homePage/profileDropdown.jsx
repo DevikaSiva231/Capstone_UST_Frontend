@@ -6,19 +6,16 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const ProfileDropdown = () => {
   const dispatch = useDispatch();
-  const userId = useSelector((state) => state.user.userId);
+  const userId = useSelector((state) => state.user.userId); // Get userId from Redux state
   const accessToken = localStorage.getItem('accessToken');
   const [profilePicture, setProfilePicture] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   // Function to fetch the user's profile picture
   const fetchProfilePicture = async () => {
-    if (!userId || !accessToken) return;
-
-    setLoading(true);
-    setError(null);
+    if (!userId || !accessToken) {
+      return;
+    }
 
     try {
       const response = await axios.get(`http://127.0.0.1:8000/api/users/${userId}/`, {
@@ -27,6 +24,7 @@ const ProfileDropdown = () => {
         },
       });
 
+      console.log('Profile Dropdown: ', response.data)
       const picture = response.data?.profile_picture;
 
       if (picture) {
@@ -36,9 +34,6 @@ const ProfileDropdown = () => {
       }
     } catch (err) {
       console.error('Error fetching profile picture:', err);
-      setError('Failed to load profile picture.');
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -58,7 +53,8 @@ const ProfileDropdown = () => {
     navigate('/home'); // Navigate without reloading the page
   };
 
-  if (!accessToken) {
+  // Render only "Login" and "Sign Up" if userId is null
+  if (!userId) {
     return (
       <div className="flex space-x-4">
         <button className="btn" onClick={() => window.location.href = '/login'}>
@@ -71,29 +67,12 @@ const ProfileDropdown = () => {
     );
   }
 
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center">
-        <span className="loading loading-spinner loading-lg text-primary"></span>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="text-center text-red-600">
-        <p>{error}</p>
-      </div>
-    );
-  }
-
+  // Render the profile dropdown for logged-in users
   return (
     <div className="dropdown dropdown-end">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-        {/* Flex Container for Profile Picture and Register Business Button */}
         <div className="flex items-center gap-4 flex-row">
           <div className="flex-shrink-0">
-            {/* Profile Picture */}
             <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-gray-300">
               <img
                 alt="User Profile"
